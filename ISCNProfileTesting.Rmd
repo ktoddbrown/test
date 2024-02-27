@@ -1,0 +1,26 @@
+---
+title: "ISCN4 profiles"
+author: "Kathe Todd-Brown <ktoddbrown@ufl.edu>"
+date: "2024-02-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#package address here: https://portal.edirepository.org/nis/mapbrowse?scope=edi&identifier=1160&revision=1
+download.file(url = 'https://portal.edirepository.org/nis/dataviewer?packageid=edi.1160.1&entityid=40527580cc045d33d9a5aaf728bf204e', destfile = 'ISCNProfile.csv')
+```
+```{r}
+
+ISCN_profile <- read_delim(file = 'ISCNProfile.csv', delim = ';')
+
+```
+
+```{r}
+ggplot(ISCN_profile) +
+  geom_point(aes(y = `lat (dec. deg)`, x = `long (dec. deg)`))
+```
